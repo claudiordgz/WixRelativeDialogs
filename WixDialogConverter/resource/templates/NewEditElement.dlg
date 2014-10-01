@@ -1,0 +1,9 @@
+<Control Id="::VarLabel::" Type="Text" 
+		X="{[DirSelection.xOffset]+([DirSelection.ElementXOffset]*::Element.xCounter::)}" 
+		Y="{[DirSelection.yOffset]+([DirSelection.ElementYOffset]*::Element.yCounter::)}" 
+		Width="{[DirSelection.PathEditWidth]}" Height="{[DirSelection.TextHeight]}" NoPrefix="yes" Transparent="yes" Text="::LabelText::" />
+<Control Id="::VarName::" Type="Edit" 
+		X="{[DirSelection.xOffset]+([DirSelection.ElementXOffset]*::Element.xCounter::)}" 
+		Y="{[DirSelection.yOffset]+[DirSelection.yOffsetDiff]+[DirSelection.TextHeight]+([DirSelection.ElementYOffset]*::Element.yCounter::)}" 
+		Width="{[DirSelection.PathEditWidth]}" Height="{[DirSelection.PathEditHeight]}" Property="::PropertyName::" Indirect="no" />
+				

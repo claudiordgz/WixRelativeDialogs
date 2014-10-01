@@ -1,0 +1,5 @@
+<Control Id="::First.BtnName::" Type="PushButton" X="{[LowerBanner.xOffset]+[GlobalWidth]*0.17}" Y="{([GlobalHeight]*0.94)+(([LowerBanner.Height]-[BannerBtn.Height])/2)}" 
+		Width="{[BannerBtn.Width]}" Height="{[BannerBtn.Height]}" Disabled="::First.BtnDisabled::" Default="::First.BtnDefault::" TabSkip="no">
+	<Text>::First.BtnText::</Text>
+	::First.ExtraText::
+</Control>

@@ -1,0 +1,12 @@
+<Control Id="MaintenanceBmp" Type="Bitmap" Hidden="no"
+  X="{[xOrigin]}" Y="{[yOrigin] +[BannerElement.specOffset]+([BannerElement.Height]+[BannerElement.yOffset])*4}" TabSkip="no" FixedSize="yes"
+  Width="{[BannerElement.Width]}" Height="{[BannerElement.Height]}">
+	<Text>[YellowFrame]</Text>
+	<Condition Action="hide">NOT Installed AND ALLUSERS</Condition>
+</Control>
+<Control Id="MaintenanceText" Type="Text" NoWrap="no"  X="{[BannerElement.xOffset]}" Hidden="no"
+	Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) +([BannerElement.Height] + [BannerElement.yOffset])*4}"
+	Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}" Transparent="yes" NoPrefix="yes">
+	<Text>{\LeftBanner_Off}Maintenance</Text>
+	<Condition Action="hide">NOT Installed AND ALLUSERS</Condition>
+</Control>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{3f4b23d2-ddc6-438f-8a99-d36ca9c4c33a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{b321c535-58c0-42f2-9dc7-a70cd56657df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\EpicorUI">
+      <UniqueIdentifier>{cd307867-f7e4-4966-a863-547bef350828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\PEDSUI">
+      <UniqueIdentifier>{1cbc49e2-c4a5-4baf-b775-d62753e4c81d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\templates">
+      <UniqueIdentifier>{11745927-125b-4d66-9916-0642ebecef2c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\config.ini">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorBrowseDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorDiskCostDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorExitDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorWelcomeDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\InstallDirectoryDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorVerifyReadyDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorInvalidDirDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorMaintenanceTypeDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorMaintenanceWelcomeDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorProgressDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorInstallationTypeDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorResumeDlg.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\EpicorUI\EpicorUserExit.wxs">
+      <Filter>Resource Files\EpicorUI</Filter>
+    </None>
+    <None Include="resource\templates\Backgrounds.dlg">
+      <Filter>Resource Files\templates</Filter>
+    </None>
+    <None Include="resource\templates\IncludeMaintenanceControl.dlg">
+      <Filter>Resource Files\templates</Filter>
+    </None>
+    <None Include="resource\templates\TitleAndTitleBackground.dlg">
+      <Filter>Resource Files\templates</Filter>
+    </None>
+    <None Include="resource\templates\ConditionalInstallingText.dlg">
+      <Filter>Resource Files\templates</Filter>
+    </None>
+    <None Include="resource\templates\LeftPanelCompleted.dlg">
+      <Filter>Resource Files\templates</Filter>
+    </None>
+    <None Include="resource\templates\LeftPanelWelcomeCollectingInstalling.dlg">
+      <Filter>Resource Files\templates</Filter>
+    </None>
+    <None Include="resource\templates\LowerRightBanner.dlg">
+      <Filter>Resource Files\templates</Filter>
+    </None>
+    <None Include="resource\templates\LowerRightButtons.dlg">
+      <Filter>Resource Files\templates</Filter>
+    </None>
+    <None Include="resource\templates\NotConditionalInstallingText.dlg">
+      <Filter>Resource Files\templates</Filter>
+    </None>
+    <None Include="resource\PEDSUI\PEDSInstallDirDlg.wxs">
+      <Filter>Resource Files\PEDSUI</Filter>
+    </None>
+  </ItemGroup>
+</Project>

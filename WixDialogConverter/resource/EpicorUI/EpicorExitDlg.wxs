@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<UI>
+			<Dialog Id="EpicorExitDialog" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.ExitDialog_Title)">
+				<<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorGreenIndex];  First.Text, {\LeftBanner_Off}; Second.BackgroundColor, [EpicorGreenIndex];
+									  Second.Text, {\LeftBanner_Off}; Third.BackgroundColor, [EpicorGreenIndex];>>
+				<<ConditionalInstallingText.dlg: First.Text, {\LeftBanner_Off}; Extra.Text, {\LeftBanner_Off};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorBlueIndex];  First.Text, {\LeftBanner_On};>>
+				<<IncludeMaintenanceControl.dlg>>
+				<<TitleAndTitleBackground.dlg : TitleText, !(loc.ExitDialogTitle);>>
+				
+				<<LowerRightButtons.dlg : First.BtnName, Back; First.BtnDisabled, yes ; First.BtnDefault, no; First.BtnText, !(loc.WixUIBack); First.ExtraText, ;
+										  Second.BtnName, Finish; Second.BtnDisabled, no ; Second.BtnDefault, yes; Second.BtnCancel, yes; 
+										  Second.BtnText, !(loc.WixUIFinish); Second.ExtraText, ;
+										  Third.BtnName, Cancel; Third.BtnDisabled, yes ; 
+										  Third.BtnDefault, no; Third.BtnCancel, yes;
+										  Third.BtnText, !(loc.WixUICancel);>>
+
+            <Control Id="OptionalCheckBox" Type="CheckBox" X="{[OptionalCheckBox.xOffset]}" Y="{[OptionalCheckBox.yOffset]}" Width="{[OptionalCheckBox.Width]}" Height="{[OptionalCheckBox.Height]}" Hidden="yes" Property="WIXUI_EXITDIALOGOPTIONALCHECKBOX" CheckBoxValue="1" Text="[WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT]">
+					<Condition Action="show">WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT AND NOT Installed</Condition>
+				</Control>
+
+				<Control Id="Description" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]}" 
+						Width="{[TextBox.Width]}" Height="{[TextBox.Height]/2}" Transparent="yes" NoPrefix="yes" Text="!(loc.ExitDialogDescription)" />
+				<Control Id="OptionalText" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]+([TextBox.Height]/2)}" 
+						Width="{[TextBox.Width]}" Height="{[TextBox.Height]/2}" Transparent="yes" NoPrefix="yes" Hidden="yes" Text="[WIXUI_EXITDIALOGOPTIONALTEXT]">
+					<Condition Action="show">WIXUI_EXITDIALOGOPTIONALTEXT AND NOT Installed</Condition>
+				</Control>
+
+			</Dialog>
+			<InstallUISequence>
+				<Show Dialog="EpicorExitDialog" OnExit="success" Overridable="yes" />
+			</InstallUISequence>
+
+			<AdminUISequence>
+				<Show Dialog="EpicorExitDialog" OnExit="success" Overridable="yes" />
+			</AdminUISequence>
+		</UI>
+	</Fragment>
+</Wix>

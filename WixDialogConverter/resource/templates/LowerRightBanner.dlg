@@ -1,0 +1,5 @@
+<Control Id="LowerRightBanner" Type="Bitmap" TabSkip="no" FixedSize="yes"
+         X="{[LowerBanner.xOffset]}" Y="{[LowerBanner.yOffset]}"
+         Width="{[LowerBanner.Width]}" Height="{[LowerBanner.Height]}">
+  <Text>[LowerRightBanner]</Text>
+</Control>

@@ -1,0 +1,14 @@
+<Control Id="::FolderLabel::" Type="Text" 
+		X="{[DirSelection.xOffset]+([DirSelection.ElementXOffset]*::Element.xCounter::)}" 
+		Y="{[DirSelection.yOffset]+([DirSelection.ElementYOffset]*::Element.yCounter::)}" 
+		Width="{[DirSelection.PathEditWidth]}" Height="{[DirSelection.TextHeight]}" NoPrefix="yes" Transparent="yes" Text="::TextInput::" />
+<Control Id="::FolderPathEdit::" Type="PathEdit" 
+		X="{[DirSelection.xOffset]+([DirSelection.ElementXOffset]*::Element.xCounter::)}" 
+		Y="{[DirSelection.yOffset]+[DirSelection.yOffsetDiff]+[DirSelection.TextHeight]+([DirSelection.ElementYOffset]*::Element.yCounter::)}" 
+		Width="{[DirSelection.PathEditWidth]}" Height="{[DirSelection.PathEditHeight]}" Property="::Property::" Indirect="yes" Text="{\TextInput_Font}"/>
+<Control Id="::FolderBtn::" Type="PushButton" 
+		X="{[DirSelection.PathEditButtonXOffset]+([DirSelection.ElementXOffset]*::Element.xCounter::)}" 
+		Y="{([DirSelection.yOffset]+[DirSelection.yOffsetDiff]+[DirSelection.TextHeight]-[DirSelection.PathEditButtonYOffset])+([DirSelection.ElementYOffset]*::Element.yCounter::)}" 
+		Width="{[DirSelection.PathEditButtonWidth]}" Height="{[DirSelection.PathEditButtonHeight]}"Bitmap="yes" TabSkip="no" FixedSize="yes" Sunken="yes" ToolTip="Browse to change directory">
+	<Text>[DirOpen22pOrgWht]</Text>
+</Control>

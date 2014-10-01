@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<UI>
+			<Dialog Id="InstallDirectoryDlg" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.InstallDirDlg_Title)">
+				<<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorGreenIndex];  First.Text, {\LeftBanner_Off}; Second.BackgroundColor, [EpicorBlueIndex];
+											  Second.Text, {\LeftBanner_On}; Third.BackgroundColor, [EpicorGrayIndex];>>
+				<<NotConditionalInstallingText.dlg: First.Text, {\LeftBanner_Off};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorGrayIndex];  First.Text, {\LeftBanner_Off};>>
+				<<TitleAndTitleBackground.dlg : TitleText, !(loc.InstallDirDlgTitle);>>
+				
+				<<LowerRightButtons.dlg : First.BtnName, Back; First.BtnDisabled, no ; First.BtnDefault, no; First.BtnText, !(loc.WixUIBack); First.ExtraText, ;
+										  Second.BtnName, Next; Second.BtnDisabled, no ; Second.BtnDefault, yes; Second.BtnCancel, no; 
+										  Second.BtnText, !(loc.WixUINext); Second.ExtraText, ;
+										  Third.BtnName, Cancel; Third.BtnDisabled, no; Third.BtnDefault, no; Third.BtnCancel, yes;
+										  Third.BtnText, !(loc.WixUICancel);>>
+        
+				<Control Id="Description" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[ChangeDirectoryTextBox.yOffset]}"
+						Width="{[TextBox.Width]}" Height="{[ChangeDirectoryTextBox.TextHeight]}" TabSkip="no"
+						Transparent="yes" NoPrefix="yes" Text="!(loc.InstallDirDlgDescription)" />
+
+				<Control Id="FolderLabel" Type="Text" NoWrap="no" X="{[ChangeDirectoryTextBox.xOffset]}" Y="{[ChangeDirectoryTextBox.yOffset]+([ChangeDirectoryTextBox.yOffsetDiff]+[ChangeDirectoryTextBox.TextHeight])*1}" 
+						Width="{[ChangeDirectoryTextBox.Width]}" Height="{[ChangeDirectoryTextBox.TextHeight]/2}" NoPrefix="yes" Transparent="yes" Text="!(loc.InstallDirDlgFolderLabel)" />
+				<Control Id="Folder" Type="PathEdit" X="{[ChangeDirectoryTextBox.xOffset]}" Y="{[ChangeDirectoryTextBox.yOffset]+([ChangeDirectoryTextBox.yOffsetDiff]+([ChangeDirectoryTextBox.TextHeight]*0.75))*2}" 
+						Width="{[ChangeDirectoryTextBox.TextWidth]}" Height="{[ChangeDirectoryTextBox.PathEditHeight]}" Property="WIXUI_INSTALLDIR" Indirect="yes" Text="{\TextInput_Font}"/>
+				<Control Id="ChangeFolder" Type="PushButton" X="{[ChangeDirectoryTextBox.PathEditButtonXOffset]}" FixedSize="yes"
+						Y="{([ChangeDirectoryTextBox.yOffset]+([ChangeDirectoryTextBox.yOffsetDiff]+([ChangeDirectoryTextBox.TextHeight]*0.75))*2)-[ChangeDirectoryTextBox.PathEditButtonYOffset]}" 
+						Width="{[ChangeDirectoryTextBox.PathEditButtonWidth]}" Height="{[ChangeDirectoryTextBox.PathEditButtonHeight]}" Bitmap="yes" TabSkip="no" Sunken="yes" ToolTip="!(loc.InstallDirDlgDescriptionToolTip)">
+					<Text>[DirOpen32pWhtGray]</Text>
+				</Control>
+			</Dialog>
+		</UI>
+	</Fragment>
+</Wix>

@@ -1,0 +1,8 @@
+<Control Id="CompletedBmp" Type="Bitmap" X="{[xOrigin]}" Y="{[yOrigin] +[BannerElement.specOffset]+([BannerElement.Height]+[BannerElement.yOffset])*3}" TabSkip="no" FixedSize="yes" Width="{[BannerElement.Width]}" Height="{[BannerElement.Height]}">
+	<Text>::First.BackgroundColor::</Text>
+</Control>
+<Control Id="CompletedText" Type="Text" NoWrap="no"  Transparent="yes" NoPrefix="yes"
+         X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) +([BannerElement.Height] + [BannerElement.yOffset])*3}" 
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}">
+	<Text>::First.Text::Completed</Text>
+</Control>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<SetDirectory Id="NETCATDATA_FOLDER" Value="[WindowsVolume]NetCatData" />
+		<SetDirectory Id="NETCATDEFAULT_FOLDER" Value="[WindowsVolume]NetCatDefault" />
+		<SetDirectory Id="NETCATGRFX_FOLDER" Value="[WindowsVolume]NetCatGrfx" />
+		<SetDirectory Id="NETCATSUPPLIER_FOLDER" Value="[WindowsVolume]NetCatSupplier" />
+		<SetDirectory Id="WEBCAT_FOLDER" Value="[WindowsVolume]Webcat" />
+		<UI>
+			<Property Id="NETCATDATA_INSTALLDIR" Value="NETCATDATA_FOLDER" />
+			<Property Id="NETCATDEFAULT_INSTALLDIR" Value="NETCATDEFAULT_FOLDER" />
+			<Property Id="NETCATGRFX_INSTALLDIR" Value="NETCATGRFX_FOLDER" />
+			<Property Id="NETCATSUPPLIER_INSTALLDIR" Value="NETCATSUPPLIER_FOLDER" />
+			<Property Id="WEBCAT_INSTALLDIR" Value="WEBCAT_FOLDER" />
+			<Property Id="DATA_SERVER_NAME" Value="ComputerName"/>
+			<Property Id="GRAPHICS_PC_NAME" Value="ComputerName"/>
+			<Property Id="DOMAIN_NAME" Value="ePartExpert.com"/>
+			<Property Id="GRAPHICS_SERVER_NAME" Value="Graphics Server"/>
+			<Property Id="PARTSEXPERT_UNIQUE_NAME" Value="PartExpert Data Server"/>
+
+			<Dialog Id="PEDSInstallDirDlg" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.InstallDirDlg_Title)">
+				<<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorGreenIndex];  First.Text, {\LeftBanner_Off}; Second.BackgroundColor, [EpicorBlueIndex];
+											  Second.Text, {\LeftBanner_On}; Third.BackgroundColor, [EpicorGrayIndex];>>
+				<<NotConditionalInstallingText.dlg: First.Text, {\LeftBanner_Off};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorGrayIndex];  First.Text, {\LeftBanner_Off};>>
+				<<TitleAndTitleBackground.dlg : TitleText, !(loc.InstallDirDlgTitle);>>
+				
+				<<LowerRightButtons.dlg : First.BtnName, Back; First.BtnDisabled, no ; First.BtnDefault, no; First.BtnText, !(loc.WixUIBack); First.ExtraText, ;
+										  Second.BtnName, Next; Second.BtnDisabled, no ; Second.BtnDefault, yes; Second.BtnCancel, no; 
+										  Second.BtnText, !(loc.WixUINext); Second.ExtraText, ;
+										  Third.BtnName, Cancel; Third.BtnDisabled, no; Third.BtnDefault, no; Third.BtnCancel, yes;
+										  Third.BtnText, !(loc.WixUICancel);>>
+				
+				<<NewEditElement.dlg: VarLabel, PEDSServerNameLabel; VarName, PEDSServerName; LabelText, PartExpert Data Server Name; PropertyName, DATA_SERVER_NAME; Element.yCounter, 0; Element.xCounter, 0;>>
+				<<NewEditElement.dlg: VarLabel, DomainNameLabel; VarName, DomainName; LabelText, Domain Name; PropertyName, DOMAIN_NAME; Element.yCounter, 1; Element.xCounter, 0;>>
+				<<NewEditElement.dlg: VarLabel, GraphicsServerNameLabel; VarName, GraphicsServerName; LabelText, Graphics Server Name; PropertyName, GRAPHICS_SERVER_NAME; Element.yCounter, 2; Element.xCounter, 0;>>
+				<<NewEditElement.dlg: VarLabel, GraphicsComputerNameLabel; VarName, GraphicsComputerName; LabelText, Graphics Files PC; PropertyName, GRAPHICS_PC_NAME; Element.yCounter, 3; Element.xCounter, 0;>>
+				<<NewEditElement.dlg: VarLabel, UniqueSystemNameLabel; VarName, UniqueSystemName; LabelText, Unique System Name; PropertyName, PARTSEXPERT_UNIQUE_NAME; Element.yCounter, 4; Element.xCounter, 0;>>
+				
+				<<NewDirectoryEditElement.dlg: FolderLabel, WebCatFolderLabel; FolderPathEdit, WebCatFolder; FolderBtn, WebCatChangeFolder; TextInput, PEDS Installation Dir; Property, WEBCAT_INSTALLDIR; Element.yCounter, 0; Element.xCounter, 1;>>
+				<<NewDirectoryEditElement.dlg: FolderLabel, NetCatDataFolderLabel; FolderPathEdit, NetCatDataFolder; FolderBtn, NetCatDataChangeFolder; TextInput, Data Files; Property, NETCATDATA_INSTALLDIR; Element.yCounter, 1; Element.xCounter, 1;>>
+				<<NewDirectoryEditElement.dlg: FolderLabel, NetCatDefaultFolderLabel; FolderPathEdit, NetCatDefaultFolder; FolderBtn, NetCatDefaultChangeFolder; TextInput, Default Files; Property, NETCATDEFAULT_INSTALLDIR; Element.yCounter, 2; Element.xCounter, 1;>>
+				<<NewDirectoryEditElement.dlg: FolderLabel, NetCatSupplierFolderLabel; FolderPathEdit, NetCatSupplierFolder; FolderBtn, NetCatSupplierChangeFolder; TextInput, Supplier Files; Property, NETCATSUPPLIER_INSTALLDIR; Element.yCounter, 3; Element.xCounter, 1;>>
+				<<NewDirectoryEditElement.dlg: FolderLabel, NetCatGrfxFolderLabel; FolderPathEdit, NetCatGrfxFolder; FolderBtn, NetCatGrfxChangeFolder; TextInput, Graphics Files; Property, NETCATGRFX_INSTALLDIR; Element.yCounter, 4; Element.xCounter, 1;>>
+			</Dialog>
+		</UI>
+	</Fragment>
+</Wix>

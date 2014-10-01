@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <UI>
+            <Dialog Id="EpicorInvalidDirDlg" Width="260" Height="85" Title="!(loc.InvalidDirDlg_Title)">
+				<Control Id="Bitmap" Type="Bitmap" X="0" Y="0" Width="260" Height="85" TabSkip="no" Text="[BackgroundWhite]" />
+                <Control Id="OK" Type="PushButton" X="102" Y="57" Width="56" Height="17" Default="yes" Cancel="yes" Text="!(loc.WixUIOK)">
+                    <Publish Event="EndDialog" Value="Return">1</Publish>
+                </Control>
+                <Control Id="Text" Type="Text" NoWrap="no" X="48" Y="22" Width="194" Height="30" Transparent="yes" Text="!(loc.InvalidDirDlgText)" />
+				<Control Id="Icon" Type="Bitmap" X="15" Y="15" TabSkip="no" Width="24" Height="24" ToolTip="!(loc.CancelDlgIconTooltip)" FixedSize="yes" IconSize="32" Text="[WarningMessage]" />
+            </Dialog>
+        </UI>
+    </Fragment>
+</Wix>

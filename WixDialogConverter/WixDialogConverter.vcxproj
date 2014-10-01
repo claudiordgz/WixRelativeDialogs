@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6335ABF9-47E8-4C3C-8AD9-B9C735834A5D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>WixDialogConverter</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../boost_1_56_0;$(SolutionDir)/../poco-1.4.6p4-all\Util\include;$(SolutionDir)/../poco-1.4.6p4-all\Foundation\include;$(SolutionDir)/CPPExpressionParser/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>CPPExpressionParser.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/Debug;$(SolutionDir)/../poco-1.4.6p4-all/lib</AdditionalLibraryDirectories>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../poco-1.4.6p4-all\Util\include;$(SolutionDir)/../poco-1.4.6p4-all\Foundation\include;$(SolutionDir)/CPPExpressionParser/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>CPPExpressionParser.lib;PocoFoundationmt.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\config.ini" />
+    <None Include="resource\EpicorUI\EpicorBrowseDlg.wxs">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="resource\EpicorUI\EpicorDiskCostDlg.wxs">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="resource\EpicorUI\EpicorExitDlg.wxs">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="resource\EpicorUI\EpicorInstallationTypeDlg.wxs">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="resource\EpicorUI\EpicorInvalidDirDlg.wxs" />
+    <None Include="resource\EpicorUI\EpicorMaintenanceTypeDlg.wxs" />
+    <None Include="resource\EpicorUI\EpicorMaintenanceWelcomeDlg.wxs">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="resource\EpicorUI\EpicorProgressDlg.wxs" />
+    <None Include="resource\EpicorUI\EpicorResumeDlg.wxs" />
+    <None Include="resource\EpicorUI\EpicorUserExit.wxs" />
+    <None Include="resource\EpicorUI\EpicorVerifyReadyDlg.wxs">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="resource\EpicorUI\EpicorWelcomeDlg.wxs">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="resource\EpicorUI\InstallDirectoryDlg.wxs">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="resource\PEDSUI\PEDSInstallDirDlg.wxs" />
+    <None Include="resource\templates\Backgrounds.dlg" />
+    <None Include="resource\templates\ConditionalInstallingText.dlg" />
+    <None Include="resource\templates\IncludeMaintenanceControl.dlg">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="resource\templates\LeftPanelCompleted.dlg" />
+    <None Include="resource\templates\LeftPanelWelcomeCollectingInstalling.dlg" />
+    <None Include="resource\templates\LowerRightBanner.dlg" />
+    <None Include="resource\templates\LowerRightButtons.dlg" />
+    <None Include="resource\templates\NotConditionalInstallingText.dlg" />
+    <None Include="resource\templates\TitleAndTitleBackground.dlg" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

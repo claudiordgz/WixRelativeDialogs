@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <UI>
+            <Dialog Id="EpicorUserExit" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.UserExit_Title)">
+				<<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [YellowFrame];  First.Text, {\LeftBanner_Off}; Second.BackgroundColor, [YellowFrame];
+									  Second.Text, {\LeftBanner_Off}; Third.BackgroundColor, [YellowFrame];>>
+				<Control Id="HideInstallingText" Type="Text" NoWrap="no" X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) + ([BannerElement.Height] + [BannerElement.yOffset])*2}"
+                  Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}" Transparent="yes" NoPrefix="yes" Text="{\LeftBanner_Off}Operation" Hidden="no">
+					<Condition Action="hide">NOT Installed</Condition>
+				</Control>
+				<<ConditionalInstallingText.dlg: First.Text, {\LeftBanner_Off}; Extra.Text, {\LeftBanner_Off};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [YellowFrame];  First.Text, {\LeftBanner_Off};>>
+				<<IncludeMaintenanceControl.dlg>>
+				<<TitleAndTitleBackground.dlg : TitleText, !(loc.UserExitTitle);>>
+				
+				<<LowerRightButtons.dlg : First.BtnName, Back; First.BtnDisabled, yes ; First.BtnDefault, no; First.BtnText, !(loc.WixUIBack); First.ExtraText, ;
+										  Second.BtnName, Finish; Second.BtnDisabled, no ; Second.BtnDefault, yes; Second.BtnCancel, yes; 
+										  Second.BtnText, !(loc.WixUIFinish); Second.ExtraText, <Publish Event="EndDialog" Value="Exit">1</Publish>;
+										  Third.BtnName, Cancel; Third.BtnDisabled, yes ; 
+										  Third.BtnDefault, no; Third.BtnCancel, yes;
+										  Third.BtnText, !(loc.WixUICancel);>>
+
+
+				<Control Id="Description" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]}" Width="{[TextBox.Width]}" Height="{[TextBox.Height]}" Transparent="yes" NoPrefix="yes" Text="!(loc.UserExitDescription1) !(loc.UserExitDescription2)" />
+
+			</Dialog>
+
+            <InstallUISequence>
+                <Show Dialog="EpicorUserExit" OnExit="cancel" Overridable="yes" />
+            </InstallUISequence>
+
+            <AdminUISequence>
+                <Show Dialog="EpicorUserExit" OnExit="cancel" Overridable="yes" />
+            </AdminUISequence>
+        </UI>
+    </Fragment>
+</Wix>

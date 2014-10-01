@@ -1,0 +1,10 @@
+<Control Id="Bitmap" Type="Bitmap" TabSkip="no"
+         X="{[Background.xOffset]}" Y="{[Background.yOffset]}"
+         Width="{[Background.Width]}" Height="{[Background.Height]}">
+  <Text>[BackgroundWhite]</Text>
+</Control>
+<Control Id="BannerBitmap" Type="Bitmap" TabSkip="no" FixedSize="yes"
+         X="{[xOrigin]}" Y="{[yOrigin]}" 
+         Width="{[LeftBanner.Width]}" Height="{[LeftBanner.Height]}">
+  <Text>[LBanner220pWht]</Text>
+</Control>

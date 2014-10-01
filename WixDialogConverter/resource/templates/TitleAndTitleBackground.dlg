@@ -1,0 +1,6 @@
+<<TitleBackground.dlg>>
+<Control Id="Title" Type="Text" NoWrap="no"  Transparent="yes" NoPrefix="yes" TabSkip="no"
+         X="{[WelcomeDlgTitle.xOffset]}" Y="{[WelcomeDlgTitle.yOffset]}"
+         Width="{[WelcomeDlgTitle.Width]}" Height="{[WelcomeDlgTitle.Height]}">
+	<Text>::TitleText::</Text>
+</Control>

@@ -1,0 +1,1 @@
+<Control Id="WelcomeBitmap" Type="Bitmap" X="{[WelcomeDlg.xOffset]}" Y="{[WelcomeDlg.yOffset]}" TabSkip="no" FixedSize="yes" Width="{[WelcomeDlg.Width]}" Height="{[WelcomeDlg.Height]}" Text="[EpicorWelcomeBanner]" />

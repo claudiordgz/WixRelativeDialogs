@@ -1,0 +1,42 @@
+<!--Conditional Text-->
+<Control Id="InstallingText" Type="Text" NoWrap="no"  Transparent="yes" NoPrefix="yes" Hidden="yes" 
+         X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) + ([BannerElement.Height] + [BannerElement.yOffset])*2}" 
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}">
+	<Text>::First.Text::Installing</Text>
+	<Condition Action="show">NOT Installed</Condition>
+</Control>
+<Control Id="InstalledInstallingText" Type="Text" NoWrap="no"  Transparent="yes" NoPrefix="yes" Hidden="no" 
+         X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) + ([BannerElement.Height] + [BannerElement.yOffset])*2}" 
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}">
+	<Text>::Extra.Text::Selection</Text>
+	<Condition Action="hide">NOT Installed</Condition>
+	<Condition Action="hide">WixUI_InstallMode = "Change"</Condition>
+	<Condition Action="hide">WixUI_InstallMode = "Repair"</Condition>
+	<Condition Action="hide">WixUI_InstallMode = "Remove"</Condition>
+	<Condition Action="hide">WixUI_InstallMode = "Update"</Condition>
+</Control>
+<Control Id="InstallingTextChange" Type="Text" NoWrap="no"  Transparent="yes" NoPrefix="yes" Hidden="yes" 
+         X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) + ([BannerElement.Height] + [BannerElement.yOffset])*2}" 
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}">
+	<Text>::First.Text::Changing</Text>
+	<Condition Action="show">WixUI_InstallMode = "Change"</Condition>
+</Control>
+<Control Id="InstallingTextRepair" Type="Text" NoWrap="no"  Transparent="yes" NoPrefix="yes" Hidden="yes" 
+         X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) + ([BannerElement.Height] + [BannerElement.yOffset])*2}" 
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}">
+	<Text>::First.Text::Repairing</Text>
+	<Condition Action="show">WixUI_InstallMode = "Repair"</Condition>
+</Control>
+<Control Id="InstallingTextRemove" Type="Text" NoWrap="no"  Transparent="yes" NoPrefix="yes" Hidden="yes" 
+         X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) + ([BannerElement.Height] + [BannerElement.yOffset])*2}" 
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}">
+	<Text>::First.Text::Removing</Text>
+	<Condition Action="show">WixUI_InstallMode = "Remove"</Condition>
+</Control>
+<Control Id="InstallingTextUpdate" Type="Text" NoWrap="no"  Transparent="yes" NoPrefix="yes" Hidden="yes" 
+         X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) + ([BannerElement.Height] + [BannerElement.yOffset])*2}" 
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}">
+	<Text>::First.Text::Updating</Text>
+	<Condition Action="show">WixUI_InstallMode = "Update"</Condition>
+</Control>
+<!--End of Conditional Text-->

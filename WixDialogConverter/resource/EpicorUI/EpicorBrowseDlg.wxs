@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <UI>
+            <Dialog Id="EpicorBrowseDlg" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.BrowseDlg_Title)">
+              <<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorGreenIndex];  First.Text, {\LeftBanner_Off}; Second.BackgroundColor, [EpicorBlueIndex];
+											  Second.Text, {\LeftBanner_On}; Third.BackgroundColor, [EpicorGrayIndex];>>
+				<<NotConditionalInstallingText.dlg: First.Text, {\LeftBanner_Off};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorGrayIndex];  First.Text, {\LeftBanner_Off};>>
+				<<TitleAndTitleBackground.dlg : TitleText, {\WixUI_Font_Title}!(loc.BrowseDlgDescription);>>
+				
+       			  
+			  <Control Id="OK" Type="PushButton" X="{[LowerBanner.xOffset]+([GlobalWidth]*0.17)+[BannerBtn.Width]*1+5}"
+                  Y="{([GlobalHeight]*0.94)+(([LowerBanner.Height]-[BannerBtn.Height])/2)}"
+                  Width="{[BannerBtn.Width]}" Height="{[BannerBtn.Height]}" Default="yes" Text="!(loc.WixUIOK)">
+                <Publish Event="SetTargetPath" Value="[_BrowseProperty]">1</Publish><Publish Event="EndDialog" Value="Return">1</Publish>
+              </Control>
+              <Control Id="Cancel" Type="PushButton" X="{[LowerBanner.xOffset]+([GlobalWidth]*0.17)+[BannerBtn.Width]*2+20}"
+                  Y="{([GlobalHeight]*0.94)+(([LowerBanner.Height]-[BannerBtn.Height])/2)}"
+                  Width="{[BannerBtn.Width]}" Height="{[BannerBtn.Height]}" Cancel="yes" TabSkip="no" Text="!(loc.WixUICancel)">
+                <Publish Event="Reset" Value="0">1</Publish><Publish Event="EndDialog" Value="Return">1</Publish>
+              </Control>
+			  
+              <Control Id="ComboLabel" Type="Text" NoWrap="no" Transparent="yes"
+                       X="{[BrowseDlg.xOffset]}" Y="{[BrowseDlg.yOffset]}" 
+                       Width="{[BrowseDlg.firstLabelWidth]}" Height="{[BrowseDlg.firstLabelHeight]}" TabSkip="no" 
+                       Text="!(loc.BrowseDlgComboLabel)" />
+              <Control Id="DirectoryCombo" Type="DirectoryCombo" 
+                       X="{[BrowseDlg.xOffset]}" Y="{[BrowseDlg.comboYOffset]}"
+                       Width="{[ChangeDirectoryTextBox.TextWidth]}" Height="{[ChangeDirectoryTextBox.PathEditHeight]}" 
+                       Property="_BrowseProperty" Indirect="yes" Remote="yes">
+                  <Subscribe Event="IgnoreChange" Attribute="IgnoreChange" />
+              </Control>
+              <Control Id="WixUI_Bmp_Up" Type="PushButton"
+                       X="{[BrowseDlg.xOffset]+[ChangeDirectoryTextBox.TextWidth]+[ChangeDirectoryTextBox.yOffsetDiff]*0.5}"  
+                       Y="{[BrowseDlg.comboYOffset]-(([ChangeDirectoryTextBox.PathEditButtonHeight]-[ChangeDirectoryTextBox.PathEditHeight])/2)}"
+                       Width="{[ChangeDirectoryTextBox.PathEditButtonWidth]}" Height="{[ChangeDirectoryTextBox.PathEditButtonHeight]}" 
+                       ToolTip="!(loc.BrowseDlgWixUI_Bmp_UpTooltip)" Bitmap="yes" FixedSize="yes" Text="[DirectoryUp]" Sunken="yes">
+                  <Publish Event="DirectoryListUp" Value="0">1</Publish>
+              </Control>
+              <Control Id="NewFolder" Type="PushButton"
+                       X="{[BrowseDlg.xOffset]+[ChangeDirectoryTextBox.TextWidth]+[ChangeDirectoryTextBox.PathEditButtonWidth]+[ChangeDirectoryTextBox.yOffsetDiff]}"
+                       Y="{[BrowseDlg.comboYOffset]-(([ChangeDirectoryTextBox.PathEditButtonHeight]-[ChangeDirectoryTextBox.PathEditHeight])/2)}"
+                       Width="{[ChangeDirectoryTextBox.PathEditButtonWidth]}" Height="{[ChangeDirectoryTextBox.PathEditButtonHeight]}"  
+                       ToolTip="!(loc.BrowseDlgNewFolderTooltip)" Bitmap="yes" FixedSize="yes" Text="[NewFolder]" Sunken="yes">
+                  <Publish Event="DirectoryListNew" Value="0">1</Publish>
+              </Control>
+              <Control Id="DirectoryList" Type="DirectoryList" 
+                       X="{[BrowseDlg.xOffset]}" Y="{[BrowseDlg.comboYOffset]+[ChangeDirectoryTextBox.PathEditButtonHeight]}" 
+                       Width="{[BrowseDlg.Width]}" Height="{([LowerBanner.yOffset]-[ChangeDirectoryTextBox.PathEditButtonHeight]-([ChangeDirectoryTextBox.yOffsetDiff])-[BrowseDlg.firstLabelHeight])-([BrowseDlg.comboYOffset]+[ChangeDirectoryTextBox.PathEditButtonHeight]+[ChangeDirectoryTextBox.yOffsetDiff]*2)}" 
+                       Property="_BrowseProperty" Sunken="yes" Indirect="yes" TabSkip="no" />
+
+              <Control Id="PathLabel" Type="Text" NoWrap="no" X="{[LowerBanner.xOffset]}" Y="{[LowerBanner.yOffset]-[ChangeDirectoryTextBox.PathEditButtonHeight]-([ChangeDirectoryTextBox.yOffsetDiff]*2)-[BrowseDlg.firstLabelHeight]}"
+                       Width="{[TextBox.Width]}" Height="{[BrowseDlg.firstLabelHeight]}" TabSkip="no" 
+                       Transparent="yes"
+                       Text="!(loc.BrowseDlgPathLabel)" />
+              <Control Id="PathEdit" Type="PathEdit" X="{[LowerBanner.xOffset]}" Y="{[LowerBanner.yOffset]-[ChangeDirectoryTextBox.PathEditButtonHeight]-[ChangeDirectoryTextBox.yOffsetDiff]}"
+                  Width="{[BrowseDlg.Width]}" Height="{[ChangeDirectoryTextBox.PathEditHeight]}" Property="_BrowseProperty" Indirect="yes" Text="{\TextInput_Font}" />
+            
+              
+            </Dialog>
+        </UI>
+    </Fragment>
+</Wix>

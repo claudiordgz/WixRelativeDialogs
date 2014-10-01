@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<UI>
+			<Dialog Id="EpicorWelcomeDlg" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.WelcomeDlg_Title)">
+				<!--Left Banner-->
+				<<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorGreenIndex];  First.Text, {\LeftBanner_Off}; Second.BackgroundColor, [EpicorBlueIndex];
+											  Second.Text, {\LeftBanner_On}; Third.BackgroundColor, [EpicorGrayIndex];>>
+				<<NotConditionalInstallingText.dlg: First.Text, {\LeftBanner_Off};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorGrayIndex];  First.Text, {\LeftBanner_Off};>>
+				<<TitleAndTitleBackground.dlg : TitleText, !(loc.DiskCostDlgTitle);>>
+				
+
+
+				<Control Id="OD" Type="PushButton" X="{[LowerBanner.xOffset]+([GlobalWidth]*0.17)+[BannerBtn.Width]*2+20}"  
+						Y="{([GlobalHeight]*0.94)+(([LowerBanner.Height]-[BannerBtn.Height])/2)}" 
+						Width="{[BannerBtn.Width]}" Height="{[BannerBtn.Height]}" Cancel="yes" TabSkip="no" Text="!(loc.WixUIOK)">
+					<Publish Event="EndDialog" Value="Return">1</Publish>
+				</Control>
+
+
+				<Control Id="Description" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]}" 
+						Width="{[TextBox.Width]}" Height="{[TextBox.Height]}" Transparent="yes" NoPrefix="yes" Text="!(loc.WelcomeDlgDescription)" >
+					<Condition Action="show">NOT Installed OR NOT PATCH</Condition>
+					<Condition Action="hide">Installed AND PATCH</Condition>
+				</Control>
+				<Control Id="PatchDescription" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]}" 
+						Width="{[TextBox.Width]}" Height="{[TextBox.Height]}" Transparent="yes" NoPrefix="yes" Text="!(loc.WelcomeUpdateDlgDescriptionUpdate)" >
+					<Condition Action="show">Installed AND PATCH</Condition>
+					<Condition Action="hide">NOT Installed OR NOT PATCH</Condition>
+				</Control>
+
+				<Control Id="Description" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[ChangeDirectoryTextBox.yOffset]}"
+						Width="{[TextBox.Width]}" Height="{[ChangeDirectoryTextBox.TextHeight]}" TabSkip="no"
+						Transparent="yes" NoPrefix="yes" Text="!(loc.DiskCostDlgDescription)" />
+
+				<Control Id="Text" Type="Text" NoWrap="no" X="{[ChangeDirectoryTextBox.xOffset]}" Y="{[ChangeDirectoryTextBox.yOffset]+([ChangeDirectoryTextBox.yOffsetDiff]+[ChangeDirectoryTextBox.TextHeight])*1}" 
+						Width="{[ChangeDirectoryTextBox.Width]}" Height="[ChangeDirectoryTextBox.TextHeight]" NoPrefix="yes" Transparent="yes" Text="!(loc.DiskCostDlgText)" />
+				<Control Id="VolumeList" Type="VolumeCostList" X="{[ChangeDirectoryTextBox.xOffset]}" Y="{[ChangeDirectoryTextBox.yOffset]+([ChangeDirectoryTextBox.yOffsetDiff]+([ChangeDirectoryTextBox.TextHeight]*0.75))*2}"
+						Width="{[ChangeDirectoryTextBox.TextWidth]}" 
+						Height="{[GlobalHeight]-(([ChangeDirectoryTextBox.yOffset]+([ChangeDirectoryTextBox.yOffsetDiff]+([ChangeDirectoryTextBox.TextHeight]*0.75))*2)+[LowerBanner.Height])}" 
+						Sunken="yes" FixedSize="yes" Remote="yes" Text="!(loc.DiskCostDlgVolumeList)" />
+
+			</Dialog>
+
+			<InstallUISequence>
+				<Show Dialog="EpicorWelcomeDlg" Before="ProgressDlg" Overridable="yes">NOT Installed OR PATCH</Show>
+			</InstallUISequence>
+		</UI>
+	</Fragment>
+</Wix>

@@ -1,0 +1,5 @@
+<Control Id="InstallingText" Type="Text" NoWrap="no"  
+         X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) + ([BannerElement.Height] + [BannerElement.yOffset])*2}" 
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}" Transparent="yes" NoPrefix="yes">
+	<Text>::First.Text::Installing</Text>
+</Control>

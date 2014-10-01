@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <UI>
+            <Dialog Id="EpicorMaintenanceTypeDlg" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.MaintenanceTypeDlg_Title)">
+                <<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorGreenIndex];  First.Text, {\LeftBanner_Off}; Second.BackgroundColor, [EpicorBlueIndex];
+											  Second.Text, {\LeftBanner_On}; Third.BackgroundColor, [EpicorGrayIndex];>>
+				<<ConditionalInstallingText.dlg: First.Text, {\LeftBanner_Off}; Extra.Text, {\LeftBanner_Off};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorGrayIndex];  First.Text, {\LeftBanner_Off};>>
+				<<IncludeMaintenanceControl.dlg>>
+				<<TitleAndTitleBackground.dlg : TitleText, !(loc.MaintenanceTypeDlgTitle);>>
+				
+				<<LowerRightButtons.dlg : First.BtnName, Back; First.BtnDisabled, no; First.BtnDefault, no; First.BtnText, !(loc.WixUIBack); First.ExtraText,  ;
+										  Second.BtnName, Next; Second.BtnDisabled, yes; Second.BtnDefault, no; Second.BtnCancel, no; 
+										  Second.BtnText, !(loc.WixUINext); Second.ExtraText,  ;
+										  Third.BtnName, Cancel; Third.BtnDisabled, no; Third.BtnDefault, no; Third.BtnCancel, yes;
+										  Third.BtnText, !(loc.WixUICancel);>>
+				
+				<Control Id="ChangeButton" Type="PushButton" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]+([MaintenanceDlg.TextHeight])}" Width="{[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.BtnHeight]}" 
+					ToolTip="!(loc.MaintenanceTypeDlgChangeButtonTooltip)" Default="yes" Text="!(loc.MaintenanceTypeDlgChangeButton)">
+                    <Publish Property="WixUI_InstallMode" Value="Change">1</Publish>
+                    <Condition Action="disable">ARPNOMODIFY</Condition>
+                </Control>
+                <Control Id="ChangeText" Type="Text" NoWrap="no" X="{[TextBox.xOffset]+[MaintenanceDlg.BtnWidth]}" Y="{[TextBox.yOffset]+([MaintenanceDlg.TextHeight])+[MaintenanceDlg.BtnHeight]}" Width="{[TextBox.Width]-[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.TextHeight]}" Transparent="yes" Text="!(loc.MaintenanceTypeDlgChangeText)">
+                    <Condition Action="hide">ARPNOMODIFY</Condition>
+                </Control>
+                <Control Id="ChangeDisabledText" Type="Text" NoWrap="no" X="{[TextBox.xOffset]+[MaintenanceDlg.BtnWidth]}" Y="{[TextBox.yOffset]+([MaintenanceDlg.TextHeight])+[MaintenanceDlg.BtnHeight]}" Width="{[TextBox.Width]-[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.TextHeight]}" Transparent="yes" NoPrefix="yes" Text="!(loc.MaintenanceTypeDlgChangeDisabledText)" Hidden="yes">
+                    <Condition Action="show">ARPNOMODIFY</Condition>
+                </Control>
+                <Control Id="RepairButton" Type="PushButton" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]+([MaintenanceDlg.TextHeight])*2+[MaintenanceDlg.BtnHeight]*1}" Width="{[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.BtnHeight]}"  ToolTip="!(loc.MaintenanceTypeDlgRepairButtonTooltip)" Text="!(loc.MaintenanceTypeDlgRepairButton)">
+                    <Publish Property="WixUI_InstallMode" Value="Repair">1</Publish>
+                    <Condition Action="disable">ARPNOREPAIR</Condition>
+                </Control>
+                <Control Id="RepairText" Type="Text" NoWrap="no" X="{[TextBox.xOffset]+[MaintenanceDlg.BtnWidth]}" Y="{[TextBox.yOffset]+([MaintenanceDlg.TextHeight])*2+[MaintenanceDlg.BtnHeight]*2}" Width="{[TextBox.Width]-[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.TextHeight]}" Transparent="yes" Text="!(loc.MaintenanceTypeDlgRepairText)">
+                    <Condition Action="hide">ARPNOREPAIR</Condition>
+                </Control>
+                <Control Id="RepairDisabledText" Type="Text" NoWrap="no" X="{[TextBox.xOffset]+[MaintenanceDlg.BtnWidth]}" Y="{[TextBox.yOffset]+([MaintenanceDlg.TextHeight])*2+[MaintenanceDlg.BtnHeight]*2}" Width="{[TextBox.Width]-[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.TextHeight]}" Transparent="yes" NoPrefix="yes" Text="!(loc.MaintenanceTypeDlgRepairDisabledText)" Hidden="yes">
+                    <Condition Action="show">ARPNOREPAIR</Condition>
+                </Control>
+                <Control Id="RemoveButton" Type="PushButton" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]+([MaintenanceDlg.TextHeight])*3+[MaintenanceDlg.BtnHeight]*2}" Width="{[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.BtnHeight]}"  ToolTip="!(loc.MaintenanceTypeDlgRemoveButtonTooltip)" Text="!(loc.MaintenanceTypeDlgRemoveButton)">
+                    <Publish Property="WixUI_InstallMode" Value="Remove">1</Publish>
+                    <Condition Action="disable">ARPNOREMOVE</Condition>
+                </Control>
+                <Control Id="RemoveText" Type="Text" NoWrap="no" X="{[TextBox.xOffset]+[MaintenanceDlg.BtnWidth]}" Y="{[TextBox.yOffset]+([MaintenanceDlg.TextHeight])*3+[MaintenanceDlg.BtnHeight]*3}" Width="{[TextBox.Width]-[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.TextHeight]}" Transparent="yes" NoPrefix="yes" Text="!(loc.MaintenanceTypeDlgRemoveText)">
+                    <Condition Action="hide">ARPNOREMOVE</Condition>
+                </Control>
+                <Control Id="RemoveDisabledText" Type="Text" NoWrap="no" X="{[TextBox.xOffset]+[MaintenanceDlg.BtnWidth]}" Y="{[TextBox.yOffset]+([MaintenanceDlg.TextHeight])*3+[MaintenanceDlg.BtnHeight]*3}" Width="{[TextBox.Width]-[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.TextHeight]}" Transparent="yes" NoPrefix="yes" Text="!(loc.MaintenanceTypeDlgRemoveDisabledText)" Hidden="yes">
+                    <Condition Action="show">ARPNOREMOVE</Condition>
+                </Control>
+		
+                <Control Id="Description" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]}" 
+						Width="{[TextBox.Width]-[MaintenanceDlg.BtnWidth]}" Height="{[MaintenanceDlg.TextHeight]}" Transparent="yes" NoPrefix="yes" Text="!(loc.MaintenanceTypeDlgDescription)" />
+            </Dialog>
+        </UI>
+    </Fragment>
+</Wix>

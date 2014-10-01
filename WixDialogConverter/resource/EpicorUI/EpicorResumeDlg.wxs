@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <UI>
+            <Dialog Id="EpicorResumeDlg" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.ResumeDlg_Title)">
+				<<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorGreenIndex];  First.Text, {\LeftBanner_Off}; Second.BackgroundColor, [EpicorGreenIndex];
+									  Second.Text, {\LeftBanner_Off}; Third.BackgroundColor, [EpicorBlueIndex];>>
+				<<ConditionalInstallingText.dlg: First.Text, {\LeftBanner_On}; Extra.Text, {\LeftBanner_On};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorGrayIndex];  First.Text, {\LeftBanner_Off};>>
+				<<IncludeMaintenanceControl.dlg>>
+				<<TitleAndTitleBackground.dlg : TitleText, !(loc.ResumeDlgTitle);>>
+				
+				<<LowerRightTwoButtons.dlg : First.BtnName, Back; First.BtnDisabled, yes; First.BtnDefault, no; First.BtnText, !(loc.WixUIBack); 
+										  First.ExtraText, <Condition Action="default">WixUI_InstallMode = "Remove"</Condition>;
+										  Second.BtnName, Cancel; Second.BtnDisabled, no ; 
+										  Second.BtnDefault, no; Second.BtnCancel, yes;
+										  Second.BtnText, !(loc.WixUICancel);>>
+
+                <Control Id="Install" Type="PushButton" ElevationShield="yes" X="{[LowerBanner.xOffset]+([GlobalWidth]*0.17)+[BannerBtn.Width]*1+5}" 
+						Y="{([GlobalHeight]*0.94)+(([LowerBanner.Height]-[BannerBtn.Height])/2)}" 
+						Width="{[BannerBtn.Width]}" Height="{[BannerBtn.Height]}" Default="yes" Text="!(loc.ResumeDlgInstall)" Hidden="yes">
+                    <Publish Event="SpawnWaitDialog" Value="WaitForCostingDlg">!(wix.WixUICostingPopupOptOut) OR CostingComplete = 1</Publish>
+                    <Publish Event="EndDialog" Value="Return"><![CDATA[OutOfDiskSpace <> 1]]></Publish>
+                    <Publish Event="SpawnDialog" Value="OutOfRbDiskDlg">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST="P" OR NOT PROMPTROLLBACKCOST)</Publish>
+                    <Publish Event="EndDialog" Value="Return">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"</Publish>
+                    <Publish Event="EnableRollback" Value="False">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"</Publish>
+                    <Publish Event="SpawnDialog" Value="OutOfDiskDlg">(OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST="F")</Publish>
+                    <Condition Action="show">ALLUSERS</Condition>
+                </Control>
+                <Control Id="InstallNoShield" Type="PushButton" ElevationShield="no" X="{[LowerBanner.xOffset]+([GlobalWidth]*0.17)+[BannerBtn.Width]*1+5}" 
+						Y="{([GlobalHeight]*0.94)+(([LowerBanner.Height]-[BannerBtn.Height])/2)}" 
+						Width="{[BannerBtn.Width]}" Height="{[BannerBtn.Height]}" Default="yes" Text="!(loc.ResumeDlgInstall)" Hidden="yes">
+                    <Publish Event="SpawnWaitDialog" Value="WaitForCostingDlg">!(wix.WixUICostingPopupOptOut) OR CostingComplete = 1</Publish>
+                    <Publish Event="EndDialog" Value="Return"><![CDATA[OutOfDiskSpace <> 1]]></Publish>
+                    <Publish Event="SpawnDialog" Value="OutOfRbDiskDlg">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST="P" OR NOT PROMPTROLLBACKCOST)</Publish>
+                    <Publish Event="EndDialog" Value="Return">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"</Publish>
+                    <Publish Event="EnableRollback" Value="False">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"</Publish>
+                    <Publish Event="SpawnDialog" Value="OutOfDiskDlg">(OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST="F")</Publish>
+                    <Condition Action="show">NOT ALLUSERS</Condition>
+                </Control>
+				
+                <Control Id="Description" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]}" 
+						Width="{[TextBox.Width]}" Height="{[TextBox.Height]}" Transparent="yes" NoPrefix="yes" Text="!(loc.ResumeDlgDescription)" />
+            </Dialog>
+
+            <InstallUISequence>
+                <Show Dialog="EpicorResumeDlg" Before="EpicorProgressDlg" Overridable="yes">Installed AND (RESUME OR Preselected)</Show>
+            </InstallUISequence>
+        </UI>
+    </Fragment>
+</Wix>

@@ -1,0 +1,11 @@
+<Control Id="::First.BtnName::" Type="PushButton" X="{[LowerBanner.xOffset]+[GlobalWidth]*0.17}" Y="{([GlobalHeight]*0.94)+(([LowerBanner.Height]-[BannerBtn.Height])/2)}" 
+		Width="{[BannerBtn.Width]}" Height="{[BannerBtn.Height]}" Disabled="::First.BtnDisabled::" Default="::First.BtnDefault::" TabSkip="no">
+	<Text>::First.BtnText::</Text>
+	::First.ExtraText::
+</Control>
+<Control Id="::Second.BtnName::" Type="PushButton" X="{[LowerBanner.xOffset]+([GlobalWidth]*0.17)+[BannerBtn.Width]*2+20}"  
+		Y="{([GlobalHeight]*0.94)+(([LowerBanner.Height]-[BannerBtn.Height])/2)}" TabSkip="no"
+		Width="{[BannerBtn.Width]}" Height="{[BannerBtn.Height]}" Disabled="::Second.BtnDisabled::" Default="::Second.BtnDefault::" Cancel="::Second.BtnCancel::">
+		<Text>::Second.BtnText::</Text>
+		<Publish Event="SpawnDialog" Value="EpicorCancelDlg">1</Publish>
+</Control>

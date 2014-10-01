@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<UI>
+			<Dialog Id="EpicorMaintenanceWelcomeDlg" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.MaintenanceWelcomeDlg_Title)">
+				<<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorBlueIndex];  First.Text, {\LeftBanner_On}; Second.BackgroundColor, [EpicorGrayIndex];
+											  Second.Text, {\LeftBanner_Off}; Third.BackgroundColor, [EpicorGrayIndex];>>
+				<<ConditionalInstallingText.dlg: First.Text, {\LeftBanner_Off}; Extra.Text, {\LeftBanner_Off};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorGrayIndex];  First.Text, {\LeftBanner_Off};>>
+				<<IncludeMaintenanceControl.dlg>>
+				<<TitleAndTitleBackground.dlg : TitleText, !(loc.MaintenanceWelcomeDlgTitle);>>
+				
+				<<LowerRightButtons.dlg : First.BtnName, Back; First.BtnDisabled, yes; First.BtnDefault, no; First.BtnText, !(loc.WixUIBack); First.ExtraText,  ;
+										  Second.BtnName, Next; Second.BtnDisabled, no; Second.BtnDefault, yes; Second.BtnCancel, no; 
+										  Second.BtnText, !(loc.WixUINext); Second.ExtraText, <Publish Event="SpawnWaitDialog" Value="WaitForCostingDlg">!(wix.WixUICostingPopupOptOut) OR CostingComplete = 1</Publish>;
+										  Third.BtnName, Cancel; Third.BtnDisabled, no; Third.BtnDefault, no; Third.BtnCancel, yes;
+										  Third.BtnText, !(loc.WixUICancel);>>
+
+										  <Control Id="Description" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]}" 
+						Width="{[TextBox.Width]}" Height="{[MaintenanceDlg.TextHeight]}" Transparent="yes" NoPrefix="yes" Text="!(loc.MaintenanceWelcomeDlgDescription)" />
+			</Dialog>
+
+			<InstallUISequence>
+				<Show Dialog="EpicorMaintenanceWelcomeDlg" Before="EpicorProgressDlg" Overridable="yes">Installed AND NOT RESUME AND NOT Preselected AND NOT PATCH</Show>
+			</InstallUISequence>
+		</UI>
+	</Fragment>
+</Wix>

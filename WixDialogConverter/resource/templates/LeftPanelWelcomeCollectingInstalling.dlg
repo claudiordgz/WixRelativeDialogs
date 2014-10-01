@@ -1,0 +1,25 @@
+<Control Id="WelcomeBmp" Type="Bitmap" TabSkip="no" FixedSize="yes" 
+         X="{[xOrigin]}" Y="{([yOrigin] +[BannerElement.specOffset])}" 
+         Width="{[BannerElement.Width]}" Height="{[BannerElement.Height]}">
+	<Text>::First.BackgroundColor::</Text>
+</Control>
+<Control Id="WelcomeText" Type="Text" NoWrap="no"  TabSkip="no" Transparent="yes" NoPrefix="yes"
+         X="{[BannerElement.xOffset]}" Y="{(([yOrigin] +[BannerElement.specOffset])+[BannerElement.Height]/3)}" 
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}">
+	<Text>::First.Text::Welcome</Text>
+</Control>
+<Control Id="CollectingInfoBmp" Type="Bitmap" TabSkip="no" FixedSize="yes" 
+         X="{[xOrigin]}" Y="{[yOrigin] +[BannerElement.specOffset]+([BannerElement.Height]+[BannerElement.yOffset])*1}" 
+         Width="{[BannerElement.Width]}" Height="{[BannerElement.Height]}">
+	<Text>::Second.BackgroundColor::</Text>
+</Control>
+<Control Id="CollectingText" Type="Text" NoWrap="no"  TabSkip="no" Transparent="yes" NoPrefix="yes"
+         X="{[BannerElement.xOffset]}" Y="{([yOrigin] +[BannerElement.specOffset])+ ([BannerElement.Height]/3) + ([BannerElement.Height] + [BannerElement.yOffset])*1}"
+         Width="{[BannerElement.Width]*0.9}" Height="{[BannerElement.Height]}">
+	<Text>::Second.Text::Collecting Information</Text>
+</Control>
+<Control Id="InstallingBmp" Type="Bitmap" TabSkip="no" FixedSize="yes" 
+         X="{[xOrigin]}" Y="{[yOrigin] +[BannerElement.specOffset]+([BannerElement.Height]+[BannerElement.yOffset])*2}" 
+         Width="{[BannerElement.Width]}" Height="{[BannerElement.Height]}">
+	<Text>::Third.BackgroundColor::</Text>
+</Control>

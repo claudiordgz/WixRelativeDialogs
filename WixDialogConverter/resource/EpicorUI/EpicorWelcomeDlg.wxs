@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<UI>
+			<Dialog Id="EpicorWelcomeDlg" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.WelcomeDlg_Title)">
+				<!--Left Banner-->
+				<<Backgrounds.dlg>>
+				<<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorBlueIndex];  First.Text, {\LeftBanner_On}; Second.BackgroundColor, [EpicorGrayIndex];
+									  Second.Text, {\LeftBanner_Off}; Third.BackgroundColor, [EpicorGrayIndex];>>
+				<<NotConditionalInstallingText.dlg: First.Text, {\LeftBanner_Off};>>
+				<<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorGrayIndex];  First.Text, {\LeftBanner_Off};>>
+				<<TitleAndTitleBackground.dlg : TitleText, !(loc.WelcomeDlgTitle);>>
+				
+				<<LowerRightButtons.dlg : First.BtnName, Back; First.BtnDisabled, yes ; First.BtnDefault, no; First.BtnText, !(loc.WixUIBack); First.ExtraText,  ;
+										  Second.BtnName, Next; Second.BtnDisabled, no ; Second.BtnDefault, yes; Second.BtnCancel, no; 
+										  Second.BtnText, !(loc.WixUINext); Second.ExtraText, <Publish Property="WixUI_InstallMode" Value="Update">Installed AND PATCH</Publish>;
+										  Third.BtnName, Cancel; Third.BtnDisabled, no; 
+										  Third.BtnDefault, no; Third.BtnCancel, yes;
+										  Third.BtnText, !(loc.WixUICancel);>>
+
+				<Control Id="Description" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]}" 
+						Width="{[TextBox.Width]}" Height="{[TextBox.Height]}" Transparent="yes" NoPrefix="yes" Text="!(loc.WelcomeDlgDescription)" >
+					<Condition Action="show">NOT Installed OR NOT PATCH</Condition>
+					<Condition Action="hide">Installed AND PATCH</Condition>
+				</Control>
+				<Control Id="PatchDescription" Type="Text" NoWrap="no" X="{[TextBox.xOffset]}" Y="{[TextBox.yOffset]}" 
+						Width="{[TextBox.Width]}" Height="{[TextBox.Height]}" Transparent="yes" NoPrefix="yes" Text="!(loc.WelcomeUpdateDlgDescriptionUpdate)" >
+					<Condition Action="show">Installed AND PATCH</Condition>
+					<Condition Action="hide">NOT Installed OR NOT PATCH</Condition>
+				</Control>
+
+			</Dialog>
+
+			<InstallUISequence>
+				<Show Dialog="EpicorWelcomeDlg" Before="EpicorProgressDlg" Overridable="yes">NOT Installed OR PATCH</Show>
+			</InstallUISequence>
+		</UI>
+	</Fragment>
+</Wix>

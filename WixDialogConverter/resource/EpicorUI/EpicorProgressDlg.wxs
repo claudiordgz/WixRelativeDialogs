@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <UI>
+            <Dialog Id="EpicorProgressDlg" Width="{[GlobalWidth]}" Height="{[GlobalHeight]}" Title="!(loc.ProgressDlg_Title)" Modeless="yes">
+				        <<Backgrounds.dlg>>
+				        <<LeftPanelWelcomeCollectingInstalling.dlg: First.BackgroundColor, [EpicorGreenIndex];  First.Text, {\LeftBanner_Off}; Second.BackgroundColor, [EpicorGreenIndex];
+									          Second.Text, {\LeftBanner_Off}; Third.BackgroundColor, [EpicorBlueIndex];>>
+				        <<ConditionalInstallingText.dlg: First.Text, {\LeftBanner_On}; Extra.Text, {\LeftBanner_On};>>
+				        <<LeftPanelCompleted.dlg :  First.BackgroundColor, [EpicorGrayIndex];  First.Text, {\LeftBanner_Off};>>
+				        <<IncludeMaintenanceControl.dlg>>
+				        <<TitleBackground.dlg>>
+				        
+
+                <!-- mutually exclusive title and description strings overlap  -->
+                <Control Id="TitleInstalling" Type="Text" NoWrap="no" X="{[WelcomeDlgTitle.xOffset]}" Y="{[WelcomeDlgTitle.yOffset]}" Width="{[WelcomeDlgTitle.Width]}" Height="{[WelcomeDlgTitle.Height]}" Transparent="yes" NoPrefix="yes" Hidden="yes" Text="!(loc.ProgressDlgTitleInstalling)">
+                    <Condition Action="show">NOT Installed OR (Installed AND (RESUME OR Preselected) AND NOT PATCH)</Condition>
+                </Control>
+				<Control Id="TextInstalling" Type="Text" NoWrap="no"  X="{[ProgressDlg.xOffset]}" Y="{[ProgressDlg.yOffset]}" 
+						Width="{[ProgressDlg.Width]}" Height="{[ProgressDlg.TextHeight]}" Transparent="yes" Hidden="yes" NoPrefix="yes" Text="!(loc.ProgressDlgTextInstalling)">
+                    <Condition Action="show">NOT Installed OR (Installed AND (RESUME OR Preselected) AND NOT PATCH)</Condition>
+                </Control>
+				
+                <Control Id="TitleChanging" Type="Text" NoWrap="no" X="{[WelcomeDlgTitle.xOffset]}" Y="{[WelcomeDlgTitle.yOffset]}" Width="{[WelcomeDlgTitle.Width]}" Height="{[WelcomeDlgTitle.Height]}" Transparent="yes" NoPrefix="yes" Hidden="yes" Text="!(loc.ProgressDlgTitleChanging)">
+                    <Condition Action="show">WixUI_InstallMode = "Change"</Condition>
+                </Control>
+                <Control Id="TextChanging" Type="Text" NoWrap="no" X="{[ProgressDlg.xOffset]}" Y="{[ProgressDlg.yOffset]}" 
+						Width="{[ProgressDlg.Width]}" Height="{[ProgressDlg.TextHeight]}" Transparent="yes" Hidden="yes" NoPrefix="yes" Text="!(loc.ProgressDlgTextChanging)">
+                    <Condition Action="show">WixUI_InstallMode = "Change"</Condition>
+                </Control>
+				
+				
+                <Control Id="TitleRepairing" Type="Text" NoWrap="no" X="{[WelcomeDlgTitle.xOffset]}" Y="{[WelcomeDlgTitle.yOffset]}" Width="{[WelcomeDlgTitle.Width]}" Height="{[WelcomeDlgTitle.Height]}" Transparent="yes" NoPrefix="yes" Hidden="yes" Text="!(loc.ProgressDlgTitleRepairing)">
+                    <Condition Action="show">WixUI_InstallMode = "Repair"</Condition>
+                </Control>
+                <Control Id="TextRepairing" Type="Text" NoWrap="no" X="{[ProgressDlg.xOffset]}" Y="{[ProgressDlg.yOffset]}" 
+						Width="{[ProgressDlg.Width]}" Height="{[ProgressDlg.TextHeight]}" Transparent="yes" Hidden="yes" NoPrefix="yes" Text="!(loc.ProgressDlgTextRepairing)">
+                    <Condition Action="show">WixUI_InstallMode = "Repair"</Condition>
+                </Control>
+				
+                <Control Id="TitleRemoving" Type="Text" NoWrap="no" X="{[WelcomeDlgTitle.xOffset]}" Y="{[WelcomeDlgTitle.yOffset]}" Width="{[WelcomeDlgTitle.Width]}" Height="{[WelcomeDlgTitle.Height]}" Transparent="yes" NoPrefix="yes" Hidden="yes" Text="!(loc.ProgressDlgTitleRemoving)">
+                    <Condition Action="show">WixUI_InstallMode = "Remove"</Condition>
+                </Control>
+                <Control Id="TextRemoving" Type="Text" NoWrap="no" X="{[ProgressDlg.xOffset]}" Y="{[ProgressDlg.yOffset]}" 
+						Width="{[ProgressDlg.Width]}" Height="{[ProgressDlg.TextHeight]}" Transparent="yes" Hidden="yes" NoPrefix="yes" Text="!(loc.ProgressDlgTextRemoving)">
+                    <Condition Action="show">WixUI_InstallMode = "Remove"</Condition>
+                </Control>
+				
+                <Control Id="TitleUpdating" Type="Text" NoWrap="no" X="{[WelcomeDlgTitle.xOffset]}" Y="{[WelcomeDlgTitle.yOffset]}" Width="{[WelcomeDlgTitle.Width]}" Height="{[WelcomeDlgTitle.Height]}" Transparent="yes" NoPrefix="yes" Hidden="yes" Text="!(loc.ProgressDlgTitleUpdating)">
+                    <Condition Action="show">WixUI_InstallMode = "Update"</Condition>
+                </Control>
+				<Control Id="TextUpdating" Type="Text" NoWrap="no" X="{[ProgressDlg.xOffset]}" Y="{[ProgressDlg.yOffset]}" 
+						Width="{[ProgressDlg.Width]}" Height="{[ProgressDlg.TextHeight]}" Transparent="yes" Hidden="yes" NoPrefix="yes" Text="!(loc.ProgressDlgTextUpdating)">
+                    <Condition Action="show">WixUI_InstallMode = "Update"</Condition>
+                </Control>
+                
+                <Control Id="StatusLabel" Type="Text" NoWrap="no" X="{[ProgressDlg.xOffset]}" Y="{[ProgressDlg.yOffset]+[ProgressDlg.innerElementyOffset]}" 
+						Width="{[ProgressDlg.Width]*0.12}" Height="{[ChangeDirectoryTextBox.TextHeight]/2}" Transparent="yes" Text="!(loc.ProgressDlgStatusLabel)" />
+				<Control Id="ActionText" Type="Text" NoWrap="no" X="{[ProgressDlg.xOffset]+([ProgressDlg.Width]*0.14)}" Y="{[ProgressDlg.yOffset]+([ProgressDlg.innerElementyOffset])}" 
+						Width="{[ProgressDlg.Width]*0.86}" Height="{[ChangeDirectoryTextBox.TextHeight]/2}" Transparent="yes">
+                    <Subscribe Event="ActionText" Attribute="Text" />
+                </Control>
+				<Control Id="ProgressBar" Type="ProgressBar" X="{[ProgressDlg.xOffset]}" Y="{[ProgressDlg.yOffset]+([ProgressDlg.innerElementyOffset]*1.5)}" 
+						Width="{[ProgressDlg.Width]}" Height="{[ProgressDlg.TextHeight]}" ProgressBlocks="yes" Text="!(loc.ProgressDlgProgressBar)">
+                    <Subscribe Event="SetProgress" Attribute="Progress" />
+                </Control>
+				<<LowerRightButtons.dlg : First.BtnName, Back; First.BtnDisabled, yes; First.BtnDefault, no; First.BtnText, !(loc.WixUIBack); First.ExtraText, ;
+								  Second.BtnName, Next; Second.BtnDisabled, yes; Second.BtnDefault, no; Second.BtnCancel, no; 
+								  Second.BtnText, !(loc.WixUINext); Second.ExtraText, ;
+								  Third.BtnName, Cancel; Third.BtnDisabled, no; Third.BtnDefault, yes; Third.BtnCancel, yes;
+								  Third.BtnText, !(loc.WixUICancel);>>
+            </Dialog>
+
+            <InstallUISequence>
+                <Show Dialog="EpicorProgressDlg" Before="ExecuteAction" Overridable="yes" />
+            </InstallUISequence>
+        </UI>
+    </Fragment>
+</Wix>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPPExpressionParser", "CPPExpressionParser\CPPExpressionParser.vcxproj", "{229FAC11-56E7-4A66-9178-6BBF2B2601F9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WixDialogConverter", "WixDialogConverter\WixDialogConverter.vcxproj", "{6335ABF9-47E8-4C3C-8AD9-B9C735834A5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{229FAC11-56E7-4A66-9178-6BBF2B2601F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{229FAC11-56E7-4A66-9178-6BBF2B2601F9}.Debug|Win32.Build.0 = Debug|Win32
+		{229FAC11-56E7-4A66-9178-6BBF2B2601F9}.Release|Win32.ActiveCfg = Release|Win32
+		{229FAC11-56E7-4A66-9178-6BBF2B2601F9}.Release|Win32.Build.0 = Release|Win32
+		{6335ABF9-47E8-4C3C-8AD9-B9C735834A5D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6335ABF9-47E8-4C3C-8AD9-B9C735834A5D}.Debug|Win32.Build.0 = Debug|Win32
+		{6335ABF9-47E8-4C3C-8AD9-B9C735834A5D}.Release|Win32.ActiveCfg = Release|Win32
+		{6335ABF9-47E8-4C3C-8AD9-B9C735834A5D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
